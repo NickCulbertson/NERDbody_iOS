@@ -196,7 +196,7 @@ class LoginController: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     fileprivate func moveControlConstraintsOffScreen() {
-        pageControlBottomAnchor?.constant = 100
+        //pageControlBottomAnchor?.constant = 100
         skipButtonTopAnchor?.constant = -100
         nextButtonTopAnchor?.constant = -100
     }

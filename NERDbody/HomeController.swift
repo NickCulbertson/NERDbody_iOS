@@ -13,18 +13,33 @@ class HomeController: UIViewController {
         
         let userLogin = UserDefaults.standard.value(forKey: "userLogin")
         let userPassword = UserDefaults.standard.value(forKey: "userPassword")
+        
+        
+        
+        
         let urlString = "http://www.nerdbody.com/login/form?user=\(userLogin ?? "")&pass=\(userPassword ?? "")"
         
-        print(urlString)
+        print("my string=",urlString)
         
         
         
         //without password
-        webV.loadRequest(NSURLRequest(url: NSURL(string: "http://www.nerdbody.com")! as URL) as URLRequest)
+//        webV.loadRequest(NSURLRequest(url: NSURL(string: "http://www.nerdbody.com")! as URL) as URLRequest)
         
         
         //with password
-//        webV.loadRequest(NSURLRequest(url: NSURL(string: urlString)! as URL) as URLRequest)
+        if let urlValue = NSURL(string: urlString) {
+            webV.loadRequest(NSURLRequest(url: urlValue as URL) as URLRequest)
+        }else{
+            print("not a url")
+            handleSignOut()
+            return
+        }
+        
+        //webV.loadRequest(NSURLRequest(url: NSURL(string: urlString)! as URL) as URLRequest)
+        
+        print("finished!")
+        
         webV.delegate = self as? UIWebViewDelegate
         //self.view.addSubview(webV)
         self.view.addSubview(webV)
